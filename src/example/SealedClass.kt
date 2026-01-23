@@ -7,6 +7,7 @@ sealed class NetworkResult{
 
 }
 
+
 fun handleResult(result: NetworkResult){
     when (result){
         is NetworkResult.Success -> {
@@ -30,4 +31,24 @@ fun main(){
     handleResult(success)
     handleResult(error)
     handleResult(loading)
+
+    handleOrder(OrderStatus.Created)
+    handleOrder(OrderStatus.Paid)
+    handleOrder(OrderStatus.Shipped)
+    handleOrder(OrderStatus.Cancelled("Нет товара на складе"))
+}
+
+sealed class OrderStatus{
+    object  Created : OrderStatus()
+    object Paid : OrderStatus()
+    object Shipped : OrderStatus()
+    data class Cancelled(val reason: String) : OrderStatus()
+}
+fun handleOrder(status: OrderStatus){
+    when (status) {
+        OrderStatus.Created -> println("Заказ создан")
+        OrderStatus.Paid -> println("Заказ оплачен")
+        OrderStatus.Shipped -> println("Заказ оплачен")
+        is OrderStatus.Cancelled -> println("Отменён: ${status.reason}")
+    }
 }
