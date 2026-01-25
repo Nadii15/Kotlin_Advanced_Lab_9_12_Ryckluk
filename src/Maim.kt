@@ -1,3 +1,4 @@
+import example.UserProfile
 import example.counter
 
 //import example.InstantMessenger
@@ -59,4 +60,23 @@ import example.counter
 fun main(){
     counter = 1
     counter = 2
+
+    println("Создаём профиль пользователя...")
+    val user = UserProfile(initialName = "Алиса", initialEmail = "alice@example.com")
+
+    println("\nИмя: ${user.name}")
+    println("Email: ${user.email}")
+
+    println("\nОбращаемся к аватару впервые:")
+    println("Файл аватара: ${user.avatar}")
+
+    println("\nОбращаемся к аватару снова (должен быть взят из кэша):")
+    println("Файл аватара: ${user.avatar}")
+
+    println("\nМеняем email:")
+    user.email = "alice_new@example.org"
+
+    println("\nМеняем имя:")
+    user.name = "Алиса К."
+
 }
