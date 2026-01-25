@@ -61,7 +61,7 @@ import example.counter
 //    }
 //}
 
-fun main() {
+//fun main() {
 //    counter = 1
 //    counter = 2
 
@@ -82,8 +82,24 @@ fun main() {
 //
 //    println("\nМеняем имя:")
 //    user.name = "Алиса К."
+//}
 
 
+object  SystemLogger{
+    init {
+        println("SystemLogger инициализирован")
+    }
+
+    fun log(message: String){
+        println("[LOG] $message")
+    }
+}
+val logger by lazy{
+    SystemLogger
+}
+
+fun main(){
+    logger.log("Запуск базы")
 }
 
 
